@@ -1,0 +1,63 @@
+---
+title: "TAN, HEINZ NICOLE G-FA3"
+subtitle: 
+date: "2026-09-05"
+output: pdf_document
+---
+
+```{r}
+
+images_supplied <- c(15, 20, 25, 40)
+relevant_images <- c(50, 60, 80, 85)
+
+overall <- sum((images_supplied/100)*(relevant_images/100))*100
+
+overall
+```
+```{r}
+sample_events <- c("HH", "TT", "HT", "TH")
+
+E1 <- c("HH", "TT")
+E2 <- c("HH", "HT")
+E3 <- c("TH", "HH")
+
+prob_E1 <- length(E1)/length(sample_events)
+prob_E2 <- length(E2)/length(sample_events)
+prob_E3 <- length(E3)/length(sample_events)
+
+prob_E1
+prob_E2
+prob_E3
+
+int_E1E2 <- length(intersect(E1, E2))/length(sample_events)
+int_E2E3 <- length(intersect(E2, E3))/length(sample_events)
+int_E1E3 <- length(intersect(E1, E3))/length(sample_events)
+
+int_E1E2
+int_E2E3
+int_E1E3
+
+if (int_E1E2 == (prob_E1 * prob_E2))
+  {print("E1 and E2 are independent")}
+if (int_E2E3 == (prob_E2 * prob_E3))
+  {print("E2 and E3 are independent")}
+if (int_E1E3 == (prob_E1 * prob_E3))
+  {print("E1 and E3 are independent")}
+
+if ((int_E1E2 == prob_E1 * prob_E2) & 
+    (int_E2E3 == prob_E2 * prob_E3) & 
+    (int_E1E3 == prob_E1 * prob_E3))
+  {print("E1, E2, E3 are pairwise independent")}
+
+intersection_all <- length(intersect(intersect(E1, E2), E3)) / length(sample_events)
+
+intersection_all
+
+prob_E1 * prob_E2 * prob_E3
+
+if(intersection_all == prob_E1 * prob_E2 * prob_E3){
+  print("E1, E2, E3 are mutually independent")
+} else{
+  print("E1, E2, E3 are NOT mutually independent")
+}
+```
