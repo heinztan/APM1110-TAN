@@ -1,0 +1,54 @@
+---
+title: "TAN, HEINZ NICOLE G - FA4"
+author: "Heinz Nicole Tan"
+date: "2026-09-08"
+output: pdf_document
+---
+##Item 1
+```{r}
+transmitted_0 <- 0.70
+transmitted_1 <- 0.30
+
+trans0_rec1 <- 0.05
+trans1_rec1 <- 0.75
+
+received_1 <- ((trans0_rec1*transmitted_0) + (trans1_rec1 * transmitted_1))
+cat("(a) P(1 received):", round(received_1 * 100, 2), "%")
+transrec_1 <- (trans1_rec1*transmitted_1)/received_1
+cat("(b) P(1 transmitted | 1 received:", round(transrec_1 * 100, 2), "%")
+
+```
+
+
+
+
+## Item 2
+```{r}
+work_jane <- 0.10
+work_amy <- 0.30
+work_ava <- 0.60
+
+workError_jane <- 0.08
+workError_amy <- 0.05
+workError_ava <- 0.01
+
+overall_error <- (work_jane * workError_jane) + (work_amy * workError_amy) + 
+                (work_ava * workError_ava) 
+
+cat("Overall percentage of error:", round(overall_error * 100, 2), "%")
+
+prob_jane <- ((work_jane * workError_jane)/overall_error)
+prob_amy <- ((work_amy * workError_amy)/overall_error)
+prob_ava <- ((work_ava * workError_ava)/overall_error)
+
+results <- data.frame(
+  Employee = c("Jane", "Amy", "Ava"),
+  Probability = c(prob_jane, prob_amy, prob_ava)
+)
+
+most_likely <- results$Employee[which.max(results$Probability)]
+cat(most_likely, "most likely have written the program if it is found with an error")
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
